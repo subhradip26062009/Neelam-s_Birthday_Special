@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dream Night Sky 🌙</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+height:100vh;
+overflow:hidden;
+background:linear-gradient(to bottom,#03001e,#1b003d,#300060);
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+color:white;
+position:relative;
+}
+
+h1{
+font-size:3rem;
+text-align:center;
+margin-bottom:20px;
+text-shadow:0 0 20px #fff;
+}
+
+.message{
+width:85%;
+max-width:800px;
+text-align:center;
+font-size:1.3rem;
+line-height:1.8;
+padding:20px;
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(10px);
+border-radius:20px;
+}
+
+.star{
+position:absolute;
+color:white;
+animation:twinkle 2s infinite;
+}
+
+@keyframes twinkle{
+0%,100%{
+opacity:.2;
+}
+50%{
+opacity:1;
+}
+}
+
+.moon{
+position:absolute;
+top:60px;
+right:80px;
+width:140px;
+height:140px;
+background:#fff8dc;
+border-radius:50%;
+box-shadow:0 0 50px white;
+}
+
+.lantern{
+position:absolute;
+font-size:40px;
+animation:floatLantern 15s linear infinite;
+}
+
+@keyframes floatLantern{
+0%{
+transform:translateY(120vh);
+}
+100%{
+transform:translateY(-150vh);
+}
+}
+
+.shooting{
+position:absolute;
+width:150px;
+height:2px;
+background:white;
+box-shadow:0 0 20px white;
+transform:rotate(-30deg);
+animation:shoot 5s linear infinite;
+}
+
+@keyframes shoot{
+0%{
+top:-100px;
+left:-100px;
+opacity:1;
+}
+100%{
+top:100%;
+left:100%;
+opacity:0;
+}
+}
+
+button{
+margin-top:30px;
+padding:15px 35px;
+border:none;
+border-radius:40px;
+font-size:1rem;
+background:hotpink;
+color:white;
+cursor:pointer;
+box-shadow:0 0 20px hotpink;
+}
+
+.infinity{
+font-size:5rem;
+margin-top:20px;
+color:pink;
+text-shadow:0 0 20px pink;
+}
+
+</style>
+</head>
+<body>
+
+<div class="moon"></div>
+
+<h1>🌙 Dream Night Sky 🌙</h1>
+
+<div class="message">
+
+Dear Neelam,
+
+Tonight every star shines a little brighter,
+every breeze feels a little softer,
+and every dream seems a little closer.
+
+May your journey ahead be filled with happiness,
+success, laughter, beautiful memories,
+and people who truly care about you.
+
+Whenever you look at the sky,
+remember that someone values your friendship
+more than words can express.
+
+✨ Happy Birthday ✨
+
+</div>
+
+<div class="infinity">∞</div>
+
+<button id="nextBtn">
+❤️ Final Friendship Page ❤️
+</button>
+
+<script>
+
+for(let i=0;i<150;i++){
+
+let star=document.createElement("div");
+
+star.classList.add("star");
+
+star.innerHTML="✦";
+
+star.style.left=Math.random()*100+"vw";
+star.style.top=Math.random()*100+"vh";
+star.style.fontSize=(5+Math.random()*15)+"px";
+star.style.animationDelay=Math.random()*3+"s";
+
+document.body.appendChild(star);
+
+}
+
+for(let i=0;i<15;i++){
+
+let lantern=document.createElement("div");
+
+lantern.classList.add("lantern");
+
+lantern.innerHTML="🏮";
+
+lantern.style.left=Math.random()*100+"vw";
+lantern.style.animationDuration=
+(10+Math.random()*10)+"s";
+
+document.body.appendChild(lantern);
+
+}
+
+let shooting=document.createElement("div");
+shooting.classList.add("shooting");
+document.body.appendChild(shooting);
+
+document.getElementById("nextBtn").onclick=function(){
+
+alert("❤️ Opening Final Friendship Page ❤️");
+
+/*
+window.location.href="final.html";
+*/
+
+};
+
+</script>
+
+</body>
+</html>

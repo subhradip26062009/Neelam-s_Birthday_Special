@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cake Ceremony 🎂</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+overflow:hidden;
+height:100vh;
+background:linear-gradient(to top,#190033,#3b0764,#6d28d9);
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+color:white;
+}
+
+h1{
+margin-bottom:20px;
+text-align:center;
+font-size:3rem;
+text-shadow:0 0 20px pink;
+}
+
+.subtitle{
+margin-bottom:30px;
+font-size:1.2rem;
+text-align:center;
+}
+
+.cake-container{
+position:relative;
+width:350px;
+height:450px;
+}
+
+.layer{
+position:absolute;
+left:50%;
+transform:translateX(-50%);
+border-radius:20px;
+box-shadow:0 0 20px rgba(255,255,255,.3);
+}
+
+.layer1{
+bottom:0;
+width:320px;
+height:120px;
+background:#ff69b4;
+}
+
+.layer2{
+bottom:110px;
+width:260px;
+height:100px;
+background:#ff85c1;
+}
+
+.layer3{
+bottom:200px;
+width:200px;
+height:90px;
+background:#ffb3d9;
+}
+
+.candle{
+position:absolute;
+top:70px;
+width:15px;
+height:70px;
+background:white;
+border-radius:10px;
+}
+
+.flame{
+position:absolute;
+top:-25px;
+left:50%;
+transform:translateX(-50%);
+width:20px;
+height:25px;
+background:gold;
+border-radius:50%;
+box-shadow:0 0 20px orange;
+animation:flicker .3s infinite alternate;
+}
+
+@keyframes flicker{
+from{transform:translateX(-50%) scale(1);}
+to{transform:translateX(-50%) scale(1.2);}
+}
+
+.controls{
+margin-top:30px;
+display:flex;
+gap:15px;
+flex-wrap:wrap;
+justify-content:center;
+}
+
+button{
+padding:12px 25px;
+border:none;
+border-radius:40px;
+font-size:1rem;
+cursor:pointer;
+background:hotpink;
+color:white;
+box-shadow:0 0 15px hotpink;
+}
+
+#message{
+margin-top:20px;
+font-size:1.3rem;
+text-align:center;
+display:none;
+}
+
+#nextBtn{
+display:none;
+}
+
+.confetti{
+position:absolute;
+font-size:25px;
+pointer-events:none;
+}
+
+</style>
+</head>
+<body>
+
+<h1>🎂 Happy Birthday Neelam 🎂</h1>
+
+<p class="subtitle">
+Make a wish and celebrate this special day ❤️
+</p>
+
+<div class="cake-container">
+
+<div class="layer layer1"></div>
+<div class="layer layer2"></div>
+<div class="layer layer3"></div>
+
+<div class="candle" style="left:105px;">
+<div class="flame"></div>
+</div>
+
+<div class="candle" style="left:165px;">
+<div class="flame"></div>
+</div>
+
+<div class="candle" style="left:225px;">
+<div class="flame"></div>
+</div>
+
+</div>
+
+<div class="controls">
+
+<button onclick="blowCandles()">
+🕯 Blow Candles
+</button>
+
+<button onclick="cutCake()">
+🍰 Cut Cake
+</button>
+
+<button id="nextBtn">
+🌙 Enter Dream Night Sky
+</button>
+
+</div>
+
+<div id="message"></div>
+
+<script>
+
+let blown=false;
+let cut=false;
+
+function blowCandles(){
+
+let flames=document.querySelectorAll('.flame');
+
+flames.forEach(flame=>{
+flame.style.display='none';
+});
+
+blown=true;
+
+document.getElementById("message").style.display="block";
+document.getElementById("message").innerHTML=
+"✨ Candles blown successfully! Your wish is now flying towards the stars ✨";
+
+checkComplete();
+}
+
+function cutCake(){
+
+cut=true;
+
+document.getElementById("message").style.display="block";
+document.getElementById("message").innerHTML=
+"🎉 Cake Cut Successfully! Let the celebration begin! 🎉";
+
+launchConfetti();
+
+checkComplete();
+}
+
+function checkComplete(){
+
+if(blown && cut){
+
+document.getElementById("nextBtn").style.display="inline-block";
+
+document.getElementById("message").innerHTML=
+"❤️ Happy Birthday Neelam ❤️<br><br>May your life always be filled with happiness, success and beautiful memories.";
+
+}
+}
+
+function launchConfetti(){
+
+for(let i=0;i<150;i++){
+
+let conf=document.createElement("div");
+
+conf.classList.add("confetti");
+
+const items=["🎉","✨","❤️","🌹","🎊"];
+
+conf.innerHTML=
+items[Math.floor(Math.random()*items.length)];
+
+conf.style.left=Math.random()*100+"vw";
+conf.style.top="-20px";
+
+document.body.appendChild(conf);
+
+let pos=-20;
+let speed=3+Math.random()*6;
+
+let fall=setInterval(()=>{
+
+pos+=speed;
+
+conf.style.top=pos+"px";
+
+if(pos>window.innerHeight){
+
+clearInterval(fall);
+conf.remove();
+
+}
+
+},20);
+
+}
+}
+
+document.getElementById("nextBtn").onclick=function(){
+
+alert("🌙 Opening Dream Night Sky Section");
+
+/*
+window.location.href="nightsky.html";
+*/
+
+};
+
+</script>
+
+</body>
+</html>
