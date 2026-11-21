@@ -1,142 +1,563 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Save The Date</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<title>Save The Date | A Special Surprise</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
 
 <style>
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
+/* GLOBAL */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-body{
-height:100vh;
-overflow:hidden;
-display:flex;
-justify-content:center;
-align-items:center;
-flex-direction:column;
-background:linear-gradient(135deg,#ffd6e8,#fff5fa,#ffffff);
-position:relative;
-text-align:center;
+:root {
+    --pink: #e76b9c;
+    --dark-pink: #ca4e83;
+    --text: #594451;
+    --muted: #a18b98;
 }
 
-/* Floating Objects */
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
 
-.float{
-position:absolute;
-pointer-events:none;
-animation:floatUp linear forwards;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 35px 15px;
+
+    font-family: 'DM Sans', sans-serif;
+    text-align: center;
+
+    background:
+        radial-gradient(circle at 15% 20%, #ffd2e5 0, transparent 35%),
+        radial-gradient(circle at 85% 80%, #e9d9ff 0, transparent 35%),
+        linear-gradient(135deg, #fff0f6, #fff9fc, #f5efff);
 }
 
-@keyframes floatUp{
-0%{
-transform:translateY(0);
-opacity:1;
-}
-100%{
-transform:translateY(-120vh);
-opacity:0;
-}
+/* BACKGROUND GLOW */
+
+.glow {
+    position: fixed;
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: .4;
+    pointer-events: none;
 }
 
-/* Question */
-
-#question{
-font-size:42px;
-color:#ff4f96;
-opacity:0;
-transition:1s;
+.glow1 {
+    background: #ff91bc;
+    top: -150px;
+    left: -100px;
 }
 
-/* Buttons */
-
-button{
-padding:14px 30px;
-border:none;
-border-radius:30px;
-background:#ff69b4;
-color:white;
-font-size:18px;
-cursor:pointer;
-margin-top:20px;
-transition:.3s;
+.glow2 {
+    background: #c7a4ff;
+    bottom: -160px;
+    right: -100px;
 }
 
-button:hover{
-transform:scale(1.05);
+/* MAIN CONTAINER */
+
+.container {
+    position: relative;
+    z-index: 5;
+
+    width: 100%;
+    max-width: 570px;
+
+    padding: 42px 35px;
+
+    background: rgba(255,255,255,.58);
+
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+
+    border: 1px solid rgba(255,255,255,.85);
+    border-radius: 30px;
+
+    box-shadow:
+        0 25px 70px rgba(186,104,147,.14),
+        inset 0 1px 0 white;
+
+    animation: appear 1s ease;
 }
 
-/* Calendar */
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
 
-#calendar{
-display:none;
-margin-top:20px;
-background:white;
-padding:25px;
-border-radius:25px;
-box-shadow:0 0 30px rgba(255,105,180,.3);
-animation:zoomIn 1s;
-}
-
-@keyframes zoomIn{
-from{
-transform:scale(.5);
-opacity:0;
-}
-to{
-transform:scale(1);
-opacity:1;
-}
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-.month{
-font-size:24px;
-font-weight:600;
-color:#ff4f96;
-margin-bottom:20px;
+/* TOP LABEL */
+
+.label {
+    display: inline-block;
+
+    padding: 8px 17px;
+
+    border-radius: 30px;
+
+    background: #fff0f6;
+    color: #d75c91;
+
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+
+    margin-bottom: 24px;
 }
 
-.days{
-display:grid;
-grid-template-columns:repeat(7,1fr);
-gap:10px;
-width:320px;
+/* HEADING */
+
+#question {
+    font-family: 'Playfair Display', serif;
+
+    font-size: clamp(27px, 6vw, 40px);
+
+    color: #c94f83;
+
+    line-height: 1.35;
+
+    opacity: 0;
+    transform: translateY(15px);
+
+    transition: 1s ease;
 }
 
-.days div{
-padding:10px;
-background:#ffeaf3;
-border-radius:50%;
+#question.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
-.special{
-background:#ff69b4 !important;
-color:white;
-font-weight:bold;
-box-shadow:0 0 25px pink;
-animation:pulse 1.5s infinite;
+.subtitle {
+    color: var(--muted);
+    font-size: 13px;
+    margin-top: 12px;
+    line-height: 1.7;
 }
 
-@keyframes pulse{
-0%{transform:scale(1);}
-50%{transform:scale(1.2);}
-100%{transform:scale(1);}
+/* BUTTONS */
+
+button {
+    border: none;
+    outline: none;
+
+    cursor: pointer;
+
+    font-family: 'DM Sans', sans-serif;
+
+    transition: .3s ease;
 }
 
-#msg1,#msg2,#continueBtn{
-display:none;
-margin-top:20px;
-color:#ff4f96;
-font-size:20px;
+.main-btn {
+    padding: 15px 30px;
+    margin-top: 28px;
+
+    border-radius: 15px;
+
+    background: linear-gradient(110deg,#ed77a6,#d95791);
+
+    color: white;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    box-shadow: 0 9px 22px rgba(218,87,145,.24);
+
+    opacity: 0;
+    transform: translateY(15px);
+
+    animation: none;
+}
+
+.main-btn.visible {
+    animation: buttonAppear .7s forwards;
+}
+
+@keyframes buttonAppear {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.main-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 13px 28px rgba(218,87,145,.32);
+}
+
+.main-btn:active {
+    transform: scale(.97);
+}
+
+/* CALENDAR */
+
+#calendar {
+    display: none;
+
+    margin: 32px auto 0;
+
+    width: 100%;
+    max-width: 440px;
+
+    padding: 25px 22px;
+
+    border-radius: 25px;
+
+    background: rgba(255,255,255,.8);
+
+    border: 1px solid white;
+
+    box-shadow: 0 15px 40px rgba(210,113,157,.13);
+
+    animation: calendarAppear .8s ease;
+}
+
+@keyframes calendarAppear {
+    from {
+        opacity: 0;
+        transform: scale(.88) translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* MONTH TITLE */
+
+.month {
+    font-family: 'Playfair Display', serif;
+
+    font-size: 27px;
+    font-weight: 600;
+
+    color: #c94f83;
+
+    margin-bottom: 7px;
+}
+
+.month-subtitle {
+    font-size: 11px;
+    color: #b59ba9;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 22px;
+}
+
+/* WEEKDAYS */
+
+.weekdays {
+    display: grid;
+    grid-template-columns: repeat(7,1fr);
+    gap: 7px;
+
+    margin-bottom: 10px;
+}
+
+.weekdays div {
+    font-size: 11px;
+    font-weight: 700;
+
+    color: #c17c9d;
+}
+
+/* DAYS */
+
+.days {
+    display: grid;
+    grid-template-columns: repeat(7,minmax(0,1fr));
+    gap: 8px;
+}
+
+.days div {
+    aspect-ratio: 1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 50%;
+
+    background: #fff0f6;
+
+    color: #856b79;
+
+    font-size: 13px;
+    font-weight: 500;
+
+    transition: .3s;
+}
+
+.days .empty {
+    background: transparent;
+}
+
+.days .date {
+    background: #fff0f6;
+}
+
+.days .date:hover {
+    background: #fbd3e3;
+    transform: scale(1.08);
+}
+
+/* SPECIAL DATE */
+
+.days .special {
+    position: relative;
+
+    background: linear-gradient(135deg,#f28ab4,#d95791);
+
+    color: white;
+
+    font-weight: 700;
+
+    box-shadow: 0 5px 18px rgba(217,87,145,.35);
+
+    animation: pulse 1.8s infinite;
+}
+
+.days .special::after {
+    content: "♥";
+
+    position: absolute;
+
+    top: -10px;
+    right: -5px;
+
+    font-size: 12px;
+    color: #e46a9d;
+}
+
+@keyframes pulse {
+    0%,100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.12);
+    }
+}
+
+/* DATE NOTE */
+
+.date-note {
+    margin-top: 20px;
+
+    padding: 12px;
+
+    background: #fff3f8;
+
+    border-radius: 14px;
+
+    color: #c65c8b;
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* MESSAGES */
+
+.message {
+    display: none;
+
+    color: #b84e80;
+
+    font-family: 'Playfair Display', serif;
+
+    font-size: 19px;
+
+    line-height: 1.7;
+
+    margin-top: 23px;
+
+    animation: messageAppear 1s ease;
+}
+
+@keyframes messageAppear {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#msg2 {
+    font-size: 17px;
+}
+
+/* CONTINUE BUTTON */
+
+#continueBtn {
+    display: none;
+
+    margin-top: 25px;
+
+    padding: 16px 30px;
+
+    width: 100%;
+    max-width: 280px;
+
+    border-radius: 15px;
+
+    background: linear-gradient(110deg,#ed77a6,#d95791);
+
+    color: white;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    box-shadow: 0 9px 22px rgba(218,87,145,.24);
+
+    animation: buttonAppear .8s ease;
+}
+
+#continueBtn:hover {
+    transform: translateY(-3px);
+}
+
+/* FOOTER */
+
+.footer {
+    margin-top: 30px;
+
+    color: #b99eac;
+
+    font-size: 10px;
+    letter-spacing: 2px;
+}
+
+/* FLOATING ELEMENTS */
+
+.float {
+    position: fixed;
+    bottom: -60px;
+
+    pointer-events: none;
+    z-index: 2;
+
+    animation: floatUp linear forwards;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) rotate(0);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: .85;
+    }
+
+    100% {
+        transform: translateY(-115vh) rotate(35deg);
+        opacity: 0;
+    }
+}
+
+/* SPARKLES */
+
+.sparkle {
+    position: fixed;
+    z-index: 1;
+
+    pointer-events: none;
+
+    animation: sparkleFade 2s ease forwards;
+}
+
+@keyframes sparkleFade {
+    0% {
+        opacity: 0;
+        transform: scale(.3);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(.4);
+    }
+}
+
+/* MOBILE */
+
+@media(max-width:480px) {
+
+    .container {
+        padding: 32px 19px;
+        border-radius: 25px;
+    }
+
+    #calendar {
+        padding: 20px 12px;
+    }
+
+    .days {
+        gap: 5px;
+    }
+
+    .weekdays {
+        gap: 5px;
+    }
+
+    .days div {
+        font-size: 12px;
+    }
+
+    .month {
+        font-size: 24px;
+    }
+
+    .message {
+        font-size: 17px;
+    }
+
+    #msg2 {
+        font-size: 15px;
+    }
+
+}
+
+@media(prefers-reduced-motion:reduce) {
+    *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+    }
 }
 
 </style>
@@ -144,191 +565,275 @@ font-size:20px;
 
 <body>
 
-<h1 id="question">
-Did You Save The Date? 💖
-</h1>
+<div class="glow glow1"></div>
+<div class="glow glow2"></div>
 
-<button id="showBtn"
-style="display:none;"
-onclick="showCalendar()">
-📅 Lets Watch👉🏼
-</button>
+<!-- MAIN CARD -->
 
-<div id="calendar">
+<div class="container">
 
-<div class="month">
-🌼November 2026🌼
+    <div class="label">
+        ✨ A SPECIAL REMINDER
+    </div>
+
+    <h1 id="question">
+        Did You Save The Date? 💖
+    </h1>
+
+    <p class="subtitle">
+        Some dates are too special to be forgotten...
+        <br>
+        Let's take a little look.
+    </p>
+
+    <button
+        class="main-btn"
+        id="showBtn"
+        onclick="showCalendar()">
+
+        📅 Let's Watch ✨
+
+    </button>
+
+    <!-- CALENDAR -->
+
+    <div id="calendar">
+
+        <div class="month">
+            November 2026
+        </div>
+
+        <div class="month-subtitle">
+            A MONTH FULL OF MEMORIES
+        </div>
+
+        <div class="weekdays">
+            <div>Sun</div>
+            <div>Mon</div>
+            <div>Tue</div>
+            <div>Wed</div>
+            <div>Thu</div>
+            <div>Fri</div>
+            <div>Sat</div>
+        </div>
+
+        <div class="days">
+
+            <!-- November 2026 starts on Sunday -->
+
+            <div class="date">1</div>
+            <div class="date">2</div>
+            <div class="date">3</div>
+            <div class="date">4</div>
+            <div class="date">5</div>
+            <div class="date">6</div>
+            <div class="date">7</div>
+
+            <div class="date">8</div>
+            <div class="date">9</div>
+            <div class="date">10</div>
+            <div class="date">11</div>
+            <div class="date">12</div>
+            <div class="date">13</div>
+            <div class="date">14</div>
+
+            <div class="date">15</div>
+            <div class="date">16</div>
+            <div class="date">17</div>
+            <div class="date">18</div>
+            <div class="date">19</div>
+            <div class="date">20</div>
+            <div class="date">21</div>
+
+            <div class="date">22</div>
+            <div class="special">23</div>
+            <div class="date">24</div>
+            <div class="date">25</div>
+            <div class="date">26</div>
+            <div class="date">27</div>
+            <div class="date">28</div>
+
+            <div class="date">29</div>
+            <div class="date">30</div>
+
+        </div>
+
+        <div class="date-note">
+            💗 Monday • 23 November 2026
+        </div>
+
+    </div>
+
+    <!-- MESSAGES -->
+
+    <p id="msg1" class="message">
+        Because this isn't just another normal day...
+    </p>
+
+    <p id="msg2" class="message">
+        It's a day worth celebrating for my very special person ✨
+    </p>
+
+    <!-- CONTINUE -->
+
+    <button
+        id="continueBtn"
+        onclick="window.location.href='page3.html'">
+
+        🌸 Continue The Journey
+
+    </button>
+
+    <div class="footer">
+        MADE WITH LOVE • JUST FOR YOU
+    </div>
+
 </div>
 
-<div class="days">
-
-<div>1</div>
-<div>2</div>
-<div>3</div>
-<div>4</div>
-<div>5</div>
-<div>6</div>
-<div>7</div>
-
-<div>8</div>
-<div>9</div>
-<div>10</div>
-<div>11</div>
-<div>12</div>
-<div>13</div>
-<div>14</div>
-
-<div>15</div>
-<div>16</div>
-<div>17</div>
-<div>18</div>
-<div>19</div>
-<div>20</div>
-<div>21</div>
-
-<div>22</div>
-<div class="special">23</div>
-<div>24</div>
-<div>25</div>
-<div>26</div>
-<div>27</div>
-<div>28</div>
-
-<div>29</div>
-<div>30</div>
-
-</div>
-
-</div>
-
-<p id="msg1">
-Because this isn't just another normal day...
-</p>
-
-<p id="msg2">
-It's a day worth celebrating for my special very person✨
-</p>
-
-<button id="continueBtn"
-onclick="location.href='page3.html'">
-🌸 Continue The Journey
-</button>
 
 <script>
 
-/* Page Sequence */
+/* PAGE INTRO */
 
-window.onload=function(){
+window.addEventListener("load", function() {
 
-setTimeout(()=>{
-document.getElementById("question").style.opacity="1";
-},500);
+    setTimeout(() => {
+        document.getElementById("question").classList.add("visible");
+    }, 400);
 
-setTimeout(()=>{
-document.getElementById("showBtn").style.display="block";
-},3000);
+    setTimeout(() => {
+        document.getElementById("showBtn").classList.add("visible");
+    }, 1800);
 
-}
+});
 
-function showCalendar(){
 
-document.getElementById("showBtn").style.display="none";
+/* SHOW CALENDAR */
 
-document.getElementById("calendar").style.display="block";
+let calendarOpened = false;
 
-setTimeout(()=>{
-document.getElementById("msg1").style.display="block";
-},2000);
+function showCalendar() {
 
-setTimeout(()=>{
-document.getElementById("msg2").style.display="block";
-},4000);
+    if(calendarOpened) return;
 
-setTimeout(()=>{
-document.getElementById("continueBtn").style.display="block";
-},6000);
+    calendarOpened = true;
 
-}
+    const button = document.getElementById("showBtn");
+    const calendar = document.getElementById("calendar");
 
-/* Hearts */
+    button.style.display = "none";
 
-function heart(){
+    calendar.style.display = "block";
 
-let e=document.createElement("div");
+    /* First message */
 
-e.className="float";
-e.innerHTML="❤️";
+    setTimeout(() => {
 
-e.style.left=Math.random()*100+"vw";
-e.style.bottom="-50px";
+        document.getElementById("msg1").style.display = "block";
 
-e.style.fontSize=
-(20+Math.random()*20)+"px";
+    }, 1200);
 
-e.style.animationDuration=
-(5+Math.random()*5)+"s";
 
-document.body.appendChild(e);
+    /* Second message */
 
-setTimeout(()=>e.remove(),10000);
+    setTimeout(() => {
 
-}
+        document.getElementById("msg2").style.display = "block";
 
-setInterval(heart,300);
+    }, 2800);
 
-/* Flowers */
 
-const flowers=["🌹","🌸","🌺","🌷"];
+    /* Continue button */
 
-function flower(){
+    setTimeout(() => {
 
-let e=document.createElement("div");
+        document.getElementById("continueBtn").style.display = "inline-block";
 
-e.className="float";
-
-e.innerHTML=
-flowers[Math.floor(Math.random()*flowers.length)];
-
-e.style.left=Math.random()*100+"vw";
-e.style.bottom="-50px";
-
-e.style.fontSize="28px";
-
-e.style.animationDuration=
-(6+Math.random()*4)+"s";
-
-document.body.appendChild(e);
-
-setTimeout(()=>e.remove(),10000);
+    }, 4400);
 
 }
 
-setInterval(flower,500);
 
-/* Sparkles */
+/* FLOATING ITEMS */
 
-function sparkle(){
+function createFloatingItem(symbol, size, duration) {
 
-let e=document.createElement("div");
+    const item = document.createElement("div");
 
-e.innerHTML="✨";
+    item.className = "float";
+    item.innerHTML = symbol;
 
-e.style.position="absolute";
-e.style.left=Math.random()*100+"vw";
-e.style.top=Math.random()*100+"vh";
+    item.style.left = Math.random() * 100 + "vw";
+    item.style.fontSize = size + "px";
+    item.style.animationDuration = duration + "s";
 
-document.body.appendChild(e);
+    document.body.appendChild(item);
 
-setTimeout(()=>{
-e.remove();
-},2000);
+    setTimeout(() => {
+        item.remove();
+    }, duration * 1000);
 
 }
 
-setInterval(sparkle,200);
+
+/* HEARTS */
+
+setInterval(() => {
+
+    createFloatingItem(
+        "❤️",
+        16 + Math.random() * 20,
+        6 + Math.random() * 4
+    );
+
+}, 650);
+
+
+/* FLOWERS */
+
+const flowers = ["🌹", "🌸", "🌺", "🌷", "💐"];
+
+setInterval(() => {
+
+    const flower = flowers[
+        Math.floor(Math.random() * flowers.length)
+    ];
+
+    createFloatingItem(
+        flower,
+        20 + Math.random() * 12,
+        7 + Math.random() * 4
+    );
+
+}, 1100);
+
+
+/* SPARKLES */
+
+function createSparkle() {
+
+    const sparkle = document.createElement("div");
+
+    sparkle.className = "sparkle";
+    sparkle.innerHTML = "✨";
+
+    sparkle.style.left = Math.random() * 100 + "vw";
+    sparkle.style.top = Math.random() * 100 + "vh";
+
+    sparkle.style.fontSize =
+        (12 + Math.random() * 14) + "px";
+
+    document.body.appendChild(sparkle);
+
+    setTimeout(() => {
+        sparkle.remove();
+    }, 2000);
+
+}
+
+setInterval(createSparkle, 650);
 
 </script>
 
 </body>
 </html>
-
