@@ -111,14 +111,7 @@ button:hover{
 transform:scale(1.05);
 }
 
-/* Music Button */
 
-.music-btn{
-position:absolute;
-top:20px;
-right:20px;
-z-index:200;
-}
 
 /* Floating Items */
 
@@ -153,9 +146,7 @@ color:#ff4f96;
 
 <body>
 
-<button class="music-btn" onclick="toggleMusic()">
-🎵 Play Music
-</button>
+
 
 <div class="container">
 
@@ -183,37 +174,7 @@ Unlock The Magic ❤️
 </div>
 
 <script>
-let musicPlaying = false;
 
-function toggleMusic(){
-
-const music =
-document.getElementById("bgMusic");
-
-const btn =
-document.querySelector(".music-btn");
-
-if(!musicPlaying){
-
-music.play();
-
-btn.innerHTML =
-"⏸ Pause Music";
-
-musicPlaying = true;
-
-}else{
-
-music.pause();
-
-btn.innerHTML =
-"🎵 Play Music";
-
-musicPlaying = false;
-
-}
-
-}
 
 /* Password */
 
