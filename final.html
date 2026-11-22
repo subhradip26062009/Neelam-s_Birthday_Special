@@ -1,277 +1,360 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Forever Friendship ❤️</title>
+<title>Forever Friendship | Neelam</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
-
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
 body{
-height:100vh;
-overflow:hidden;
-background:linear-gradient(135deg,#ff0080,#7928ca,#2b1055);
-display:flex;
-justify-content:center;
-align-items:center;
-flex-direction:column;
-color:white;
-text-align:center;
-position:relative;
+    min-height:100vh;
+    overflow-x:hidden;
+    background:
+        radial-gradient(ellipse at 50% 10%,#30204f 0%,transparent 55%),
+        linear-gradient(135deg,#050817,#10102b,#170e2d);
+    color:#fff;
+    font-family:'DM Sans',sans-serif;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    position:relative;
+    padding:35px 15px;
 }
+
+/* BACKGROUND GLOW */
+
+body::before,
+body::after{
+    content:"";
+    position:fixed;
+    width:350px;
+    height:350px;
+    border-radius:50%;
+    filter:blur(110px);
+    opacity:.25;
+    pointer-events:none;
+}
+
+body::before{
+    background:#8d55d8;
+    top:-120px;
+    left:-100px;
+}
+
+body::after{
+    background:#bd8b45;
+    bottom:-150px;
+    right:-100px;
+}
+
+/* MAIN CARD */
 
 .container{
-z-index:10;
-max-width:900px;
-padding:30px;
+    position:relative;
+    z-index:5;
+    width:100%;
+    max-width:850px;
+    padding:45px 35px;
+    border:1px solid rgba(255,220,160,.22);
+    border-radius:28px;
+    background:rgba(255,255,255,.055);
+    backdrop-filter:blur(18px);
+    box-shadow:0 25px 80px rgba(0,0,0,.35);
+    animation:appear 1.2s ease;
 }
+
+@keyframes appear{
+    from{
+        opacity:0;
+        transform:translateY(35px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* TOP LABEL */
+
+.label{
+    color:#d9b77c;
+    letter-spacing:5px;
+    font-size:.75rem;
+    font-weight:600;
+    margin-bottom:22px;
+}
+
+/* HEADING */
 
 h1{
-font-size:4rem;
-margin-bottom:20px;
-text-shadow:0 0 25px white;
-animation:glow 2s infinite alternate;
+    font-family:'Playfair Display',serif;
+    font-size:clamp(2.2rem,6vw,4.2rem);
+    line-height:1.2;
+    font-weight:600;
+    color:#fff4df;
+    text-shadow:0 0 30px rgba(255,215,150,.2);
 }
 
-@keyframes glow{
-from{
-text-shadow:0 0 15px white;
+h1 span{
+    color:#e6c28b;
 }
-to{
-text-shadow:0 0 40px pink;
+
+/* DIVIDER */
+
+.divider{
+    width:90px;
+    height:1px;
+    background:linear-gradient(90deg,transparent,#e6c28b,transparent);
+    margin:25px auto;
 }
-}
+
+/* INFINITY */
 
 .infinity{
-font-size:8rem;
-margin:20px 0;
-color:#ffd700;
-animation:spin 8s linear infinite;
+    font-family:serif;
+    font-size:clamp(6rem,15vw,9rem);
+    line-height:1;
+    color:#e8c58e;
+    text-shadow:
+        0 0 15px rgba(232,197,142,.5),
+        0 0 50px rgba(232,197,142,.25);
+    animation:float 4s ease-in-out infinite;
+    margin:10px 0 25px;
 }
 
-@keyframes spin{
-0%{
-transform:rotate(0deg);
+@keyframes float{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-12px)}
 }
-100%{
-transform:rotate(360deg);
-}
-}
+
+/* MESSAGE */
 
 .message{
-font-size:1.4rem;
-line-height:1.8;
-background:rgba(255,255,255,0.12);
-padding:25px;
-border-radius:25px;
-backdrop-filter:blur(12px);
+    max-width:690px;
+    margin:auto;
+    padding:30px 28px;
+    border-radius:20px;
+    background:rgba(255,255,255,.055);
+    border:1px solid rgba(255,255,255,.09);
+    color:#e5e0ed;
+    font-size:1.08rem;
+    line-height:2;
+    font-weight:400;
 }
+
+.message .highlight{
+    color:#e8c58e;
+    font-weight:600;
+}
+
+/* SIGNATURE */
 
 .from{
-margin-top:25px;
-font-size:1.8rem;
-font-weight:bold;
-color:#ffd700;
+    margin-top:30px;
+    font-family:'Playfair Display',serif;
+    font-size:1.7rem;
+    color:#e8c58e;
+    font-style:italic;
 }
+
+.footer{
+    margin-top:12px;
+    font-size:.7rem;
+    letter-spacing:3px;
+    color:#9c91ad;
+}
+
+/* BUTTON */
 
 button{
-margin-top:30px;
-padding:15px 35px;
-font-size:1.1rem;
-border:none;
-border-radius:50px;
-background:white;
-color:#ff1493;
-cursor:pointer;
-font-weight:bold;
-box-shadow:0 0 25px white;
+    margin-top:30px;
+    padding:14px 30px;
+    border:1px solid #d7b77d;
+    border-radius:50px;
+    background:linear-gradient(135deg,#e8c58e,#b98a50);
+    color:#171023;
+    font-size:.9rem;
+    font-weight:600;
+    letter-spacing:.5px;
+    cursor:pointer;
+    transition:.35s;
+    box-shadow:0 8px 30px rgba(210,169,105,.2);
 }
 
-.petal,
-.heart,
-.firework{
-position:absolute;
-pointer-events:none;
+button:hover{
+    transform:translateY(-4px);
+    box-shadow:0 12px 35px rgba(210,169,105,.4);
 }
 
+/* FLOATING PARTICLES */
+
+.particle{
+    position:fixed;
+    pointer-events:none;
+    z-index:1;
+    animation:rise linear forwards;
+    opacity:0;
+}
+
+@keyframes rise{
+    0%{
+        transform:translateY(0) scale(.6);
+        opacity:0;
+    }
+    15%{opacity:.8}
+    85%{opacity:.6}
+    100%{
+        transform:translateY(-110vh) scale(1.3);
+        opacity:0;
+    }
+}
+
+/* SPARKLES */
+
+.sparkle{
+    position:fixed;
+    width:3px;
+    height:3px;
+    border-radius:50%;
+    background:#ffe5b5;
+    box-shadow:0 0 10px #ffe5b5;
+    animation:twinkle 3s infinite ease-in-out;
+    pointer-events:none;
+}
+
+@keyframes twinkle{
+    0%,100%{opacity:.15;transform:scale(.7)}
+    50%{opacity:1;transform:scale(1.5)}
+}
+
+/* RESPONSIVE */
+
+@media(max-width:600px){
+    body{
+        padding:20px 12px;
+    }
+
+    .container{
+        padding:35px 18px;
+        border-radius:22px;
+    }
+
+    .label{
+        font-size:.65rem;
+        letter-spacing:3px;
+    }
+
+    .message{
+        padding:22px 17px;
+        font-size:.95rem;
+        line-height:1.9;
+    }
+
+    .from{
+        font-size:1.45rem;
+    }
+
+    button{
+        font-size:.82rem;
+    }
+}
 </style>
 </head>
+
 <body>
 
 <div class="container">
 
-<h1>🎉 Happy Birthday Neelam 🎉</h1>
+    <div class="label">A BOND THAT TIME CAN NEVER FADE</div>
 
-<div class="infinity">∞</div>
+    <h1>Happy Birthday <span>Neelam</span></h1>
 
-<div class="message">
+    <div class="divider"></div>
 
-Today is not just a birthday.
+    <div class="infinity">∞</div>
 
-It is a celebration of your kindness,
-your smile,
-your dreams,
-and the beautiful person you are.
+    <div class="message">
+        Today is not just a birthday.
 
-May every day ahead bring joy,
-success,
-love,
-and unforgettable memories.
+        It is a celebration of your kindness,
+        your smile, your dreams,
+        and the beautiful person you are.
 
-Thank you for being such an amazing friend.
+        May every day ahead bring
+        <span class="highlight">joy, success, happiness</span>,
+        and unforgettable memories.
 
-No matter where life takes us,
-our friendship will always remain special.
+        Thank you for being such an amazing friend.
 
-❤️ Forever Friends ❤️
+        No matter where life takes us,
+        our friendship will always remain special.
 
-</div>
+        <br><br>
+        <span class="highlight">Forever Friends ✨</span>
+    </div>
 
-<div class="from">
-— Subhradip Sau ❤️
-</div>
+    <div class="from">— Subhradip Sau</div>
 
-<button onclick="location.reload()">
-🔄 Replay The Journey
-</button>
+    <div class="footer">A FRIENDSHIP BEYOND DISTANCE & TIME</div>
+
+    <button onclick="location.href='page1.html'">
+        ↻ Replay The Journey
+    </button>
 
 </div>
 
 <script>
 
-/* HEART RAIN */
+/* FLOATING GOLD PARTICLES */
 
-setInterval(()=>{
+function createParticle(){
 
-let heart=document.createElement("div");
+    const particle=document.createElement("div");
+    particle.className="particle";
 
-heart.classList.add("heart");
+    const symbols=["✦","✧","⋆","✴"];
 
-heart.innerHTML="❤️";
+    particle.innerHTML=
+        symbols[Math.floor(Math.random()*symbols.length)];
 
-heart.style.left=Math.random()*100+"vw";
-heart.style.top="-20px";
-heart.style.fontSize=(15+Math.random()*25)+"px";
+    particle.style.left=Math.random()*100+"vw";
+    particle.style.top="105vh";
+    particle.style.fontSize=(12+Math.random()*15)+"px";
+    particle.style.color="#e8c58e";
+    particle.style.animationDuration=(7+Math.random()*7)+"s";
 
-document.body.appendChild(heart);
+    document.body.appendChild(particle);
 
-let pos=-20;
-
-let fall=setInterval(()=>{
-
-pos+=3;
-
-heart.style.top=pos+"px";
-
-if(pos>window.innerHeight){
-
-heart.remove();
-clearInterval(fall);
-
+    setTimeout(()=>particle.remove(),15000);
 }
 
-},20);
+setInterval(createParticle,450);
 
-},300);
 
-/* ROSE PETALS */
+/* BACKGROUND SPARKLES */
 
-setInterval(()=>{
+for(let i=0;i<65;i++){
 
-let petal=document.createElement("div");
+    const sparkle=document.createElement("div");
+    sparkle.className="sparkle";
 
-petal.classList.add("petal");
+    sparkle.style.left=Math.random()*100+"vw";
+    sparkle.style.top=Math.random()*100+"vh";
+    sparkle.style.animationDelay=Math.random()*4+"s";
+    sparkle.style.animationDuration=(2+Math.random()*3)+"s";
 
-petal.innerHTML="🌹";
-
-petal.style.left=Math.random()*100+"vw";
-petal.style.top="-30px";
-petal.style.fontSize=(18+Math.random()*22)+"px";
-
-document.body.appendChild(petal);
-
-let pos=-30;
-
-let fall=setInterval(()=>{
-
-pos+=2;
-
-petal.style.top=pos+"px";
-
-if(pos>window.innerHeight){
-
-petal.remove();
-clearInterval(fall);
-
+    document.body.appendChild(sparkle);
 }
-
-},20);
-
-},500);
-
-/* FIREWORKS */
-
-function createFirework(){
-
-let emojis=["✨","🎆","🎇","💖","🌟"];
-
-for(let i=0;i<40;i++){
-
-let fire=document.createElement("div");
-
-fire.classList.add("firework");
-
-fire.innerHTML=
-emojis[Math.floor(Math.random()*emojis.length)];
-
-let x=window.innerWidth/2;
-let y=window.innerHeight/2;
-
-fire.style.left=x+"px";
-fire.style.top=y+"px";
-fire.style.fontSize="25px";
-
-document.body.appendChild(fire);
-
-let angle=Math.random()*360;
-let speed=2+Math.random()*6;
-
-let dx=Math.cos(angle)*speed;
-let dy=Math.sin(angle)*speed;
-
-let life=0;
-
-let move=setInterval(()=>{
-
-life++;
-
-x+=dx;
-y+=dy;
-
-fire.style.left=x+"px";
-fire.style.top=y+"px";
-
-if(life>60){
-
-clearInterval(move);
-fire.remove();
-
-}
-
-},20);
-
-}
-
-}
-
-setInterval(createFirework,3000);
 
 </script>
 
