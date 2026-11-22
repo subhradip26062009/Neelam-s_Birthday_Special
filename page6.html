@@ -1,47 +1,623 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Page 6 - Why You Are So Special</title>
+
+<title>Why You Are Special | Neelam</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
+
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Arial,sans-serif;background:linear-gradient(135deg,#fff5f8,#ffd9e8,#fff);min-height:100vh}
-.hero{text-align:center;padding:60px 20px}
-.hero h1{color:#ff4f96}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;padding:25px}
-.card{background:#fff;padding:18px;border-radius:18px;cursor:pointer;box-shadow:0 5px 15px rgba(0,0,0,.1)}
-.box{max-width:800px;margin:20px auto;background:#fff;padding:20px;border-radius:20px}
-.btn{display:block;margin:20px auto;padding:14px 28px;border:none;border-radius:30px;background:#ff4f96;color:#fff}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --pink: #dc6596;
+    --dark-pink: #c94f83;
+    --text: #634d5c;
+    --muted: #a18b98;
+}
+
+body {
+    min-height: 100vh;
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+
+    background:
+        radial-gradient(circle at 10% 10%, #ffd4e7, transparent 35%),
+        radial-gradient(circle at 90% 80%, #e7d9ff, transparent 35%),
+        linear-gradient(135deg, #fff3f8, #fffafd, #f5efff);
+}
+
+/* HERO */
+
+.hero {
+    text-align: center;
+    padding: 75px 20px 35px;
+}
+
+.label {
+    display: inline-block;
+    background: white;
+    color: var(--pink);
+    padding: 8px 18px;
+    border-radius: 30px;
+    font-size: 11px;
+    letter-spacing: 2px;
+    font-weight: 700;
+    margin-bottom: 22px;
+}
+
+.hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(34px, 6vw, 55px);
+    color: var(--dark-pink);
+    line-height: 1.25;
+}
+
+.hero p {
+    color: var(--muted);
+    margin-top: 15px;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+/* PROGRESS */
+
+.progress-area {
+    max-width: 500px;
+    margin: 25px auto 35px;
+    padding: 0 20px;
+}
+
+.progress-text {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #a17d91;
+    margin-bottom: 10px;
+}
+
+.progress-track {
+    height: 7px;
+    background: rgba(255,255,255,.8);
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg,#ed8bb3,#c95791);
+    border-radius: 20px;
+    transition: width .5s ease;
+}
+
+/* CARD GRID */
+
+.section-title {
+    text-align: center;
+    color: #b95a85;
+    font-family: 'Playfair Display', serif;
+    font-size: 25px;
+    margin-bottom: 25px;
+}
+
+.cards {
+    width: 90%;
+    max-width: 1050px;
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 17px;
+}
+
+/* INDIVIDUAL CARD */
+
+.card {
+    min-height: 135px;
+    padding: 20px 12px;
+
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,.9);
+
+    background: rgba(255,255,255,.65);
+    backdrop-filter: blur(15px);
+
+    box-shadow: 0 8px 25px rgba(168,105,139,.08);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    cursor: pointer;
+    text-align: center;
+
+    transition: .35s ease;
+
+    animation: appear .7s ease both;
+}
+
+.card:hover {
+    transform: translateY(-7px);
+    background: white;
+    box-shadow: 0 15px 35px rgba(218,87,145,.17);
+}
+
+.card.active {
+    background: linear-gradient(135deg,#fff,#ffe4ef);
+    border: 1px solid #ed91b8;
+    box-shadow: 0 8px 28px rgba(218,87,145,.2);
+    transform: translateY(-4px);
+}
+
+.card .emoji {
+    font-size: 31px;
+}
+
+.card .name {
+    color: #856477;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.card.active .name {
+    color: #c94f83;
+}
+
+.card .status {
+    font-size: 10px;
+    color: #c58ca7;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* MESSAGE DISPLAY */
+
+.message-box {
+    width: 90%;
+    max-width: 750px;
+    margin: 45px auto;
+
+    padding: 35px 30px;
+
+    background: rgba(255,255,255,.75);
+    backdrop-filter: blur(20px);
+
+    border: 1px solid white;
+    border-radius: 25px;
+
+    box-shadow: 0 15px 45px rgba(180,105,145,.1);
+
+    text-align: center;
+
+    min-height: 185px;
+}
+
+.message-box h2 {
+    font-family: 'Playfair Display', serif;
+    color: #c94f83;
+    font-size: 26px;
+    margin-bottom: 15px;
+}
+
+.message-box p {
+    color: #886f7e;
+    font-size: 15px;
+    line-height: 1.9;
+}
+
+/* SECRET LETTER */
+
+.secret-section {
+    text-align: center;
+    padding: 40px 20px 70px;
+}
+
+.secret-section h2 {
+    font-family: 'Playfair Display', serif;
+    color: #c94f83;
+    font-size: 30px;
+    margin-bottom: 12px;
+}
+
+.secret-section > p {
+    color: var(--muted);
+    font-size: 13px;
+    margin-bottom: 25px;
+}
+
+.envelope {
+    font-size: 65px;
+    cursor: pointer;
+    display: inline-block;
+    transition: .4s;
+}
+
+.envelope:hover {
+    transform: translateY(-8px) rotate(-5deg);
+}
+
+.secret-btn, .next-btn {
+    display: block;
+    margin: 20px auto;
+    padding: 15px 30px;
+
+    border: none;
+    border-radius: 15px;
+
+    background: linear-gradient(110deg,#ed77a6,#d95791);
+    color: white;
+
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+
+    box-shadow: 0 9px 22px rgba(218,87,145,.2);
+    transition: .3s;
+}
+
+.secret-btn:hover, .next-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 30px rgba(218,87,145,.3);
+}
+
+/* LETTER */
+
+.letter {
+    display: none;
+
+    max-width: 650px;
+    width: 90%;
+
+    margin: 25px auto;
+    padding: 35px;
+
+    background: #fffaf0;
+    border: 1px solid #f4dfbd;
+    border-radius: 20px;
+
+    box-shadow: 0 15px 45px rgba(90,55,35,.12);
+
+    text-align: left;
+    animation: appear .8s ease;
+}
+
+.letter h3 {
+    font-family: 'Caveat', cursive;
+    font-size: 35px;
+    color: #bd6a82;
+    margin-bottom: 20px;
+}
+
+.letter p {
+    font-family: 'DM Sans', sans-serif;
+    color: #795e65;
+    font-size: 14px;
+    line-height: 2;
+    white-space: pre-line;
+}
+
+.signature {
+    text-align: right;
+    margin-top: 25px;
+    font-family: 'Caveat', cursive;
+    font-size: 27px;
+    color: #bd6a82;
+}
+
+/* FOOTER */
+
+footer {
+    text-align: center;
+    padding: 25px;
+    color: #b99eac;
+    font-size: 10px;
+    letter-spacing: 2px;
+}
+
+/* MOBILE */
+
+@media(max-width:750px) {
+    .cards {
+        grid-template-columns: repeat(3,1fr);
+        width: 94%;
+        gap: 12px;
+    }
+
+    .card {
+        min-height: 120px;
+        padding: 15px 7px;
+    }
+}
+
+@media(max-width:480px) {
+    .hero {
+        padding-top: 50px;
+    }
+
+    .cards {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .card .emoji {
+        font-size: 27px;
+    }
+
+    .card .name {
+        font-size: 12px;
+    }
+
+    .message-box {
+        padding: 25px 18px;
+    }
+
+    .letter {
+        padding: 25px 20px;
+    }
+}
+
+@media(prefers-reduced-motion:reduce) {
+    *, *::before, *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+    }
+}
 </style>
 </head>
+
 <body>
-<div class="hero">
-<h1>💖 Why You Are So Special 💖</h1>
-<p>Click the cards to reveal messages.</p>
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="label">
+        ✦ A LITTLE REMINDER ✦
+    </div>
+
+    <h1>
+        Why You Are So Special 💖
+    </h1>
+
+    <p>
+        There are countless reasons to appreciate you...
+        <br>
+        Here are just a few of them.
+    </p>
+
+</section>
+
+<!-- PROGRESS -->
+
+<div class="progress-area">
+
+    <div class="progress-text">
+        <span>Reasons discovered</span>
+        <span id="count">0 / 20</span>
+    </div>
+
+    <div class="progress-track">
+        <div class="progress-fill" id="progress"></div>
+    </div>
+
 </div>
+
+<!-- CARDS -->
+
+<h2 class="section-title">
+    20 Little Things I Appreciate About You
+</h2>
+
 <div class="cards" id="cards"></div>
-<div class="box">
-<h2 id="title">Click a card</h2>
-<p id="msg">Message appears here.</p>
+
+<!-- MESSAGE -->
+
+<div class="message-box">
+
+    <h2 id="messageTitle">
+        Choose a little reminder ✨
+    </h2>
+
+    <p id="message">
+        Each card holds a reason why you are appreciated.
+        Click any card to discover it.
+    </p>
+
 </div>
-<div class="box" id="secret" style="display:none">
-<h2>🌹 Secret Letter</h2>
-<p>Dear Neelam,<br><br>This is a placeholder secret letter.<br><br>— Subhradip ❤️</p>
-</div>
-<button class="btn" onclick="document.getElementById('secret').style.display='block'">🔓 Unlock Secret Letter</button>
-<button class="btn" onclick="location.href='page7.html'">🎂 Continue To Birthday Surprise</button>
+
+<!-- SECRET LETTER -->
+
+<section class="secret-section">
+
+    <h2>A Little Something More 💌</h2>
+
+    <p>
+        There is one final message waiting just for you.
+    </p>
+
+    <div class="envelope" onclick="openLetter()">
+        💌
+    </div>
+
+    <button class="secret-btn" onclick="openLetter()">
+        Open Your Secret Letter
+    </button>
+
+    <div class="letter" id="letter">
+
+        <h3>Dear Neelam ❤️</h3>
+
+        <p>
+There are some people who make ordinary days feel special.
+
+You are one of those people.
+
+Your kindness, your laughter, your little habits and the way you make moments memorable are all things worth appreciating.
+
+I hope you always remember how valuable you are and how much happiness you bring to the people around you.
+
+Never stop being yourself.
+
+You deserve beautiful moments, endless happiness and countless reasons to smile.
+
+Happy Birthday, Neelam! ❤️
+        </p>
+
+        <div class="signature">
+            — Subhradip ❤️
+        </div>
+
+    </div>
+
+</section>
+
+<!-- NEXT PAGE -->
+
+<button class="next-btn" onclick="location.href='page7.html'">
+    🎂 Continue To Birthday Surprise →
+</button>
+
+<footer>
+    MADE WITH LOVE • JUST FOR YOU
+</footer>
 
 <script>
-const data=["❤️ Your Smile","🌸 Your Kindness","🦋 Your Presence","✨ Your Innocence","🌹 Your Eyes","💌 Your Caring Nature","😊 Your Laugh","⭐ Your Personality","🌷 Your Sweetness","💕 Your Support","🎀 Your Style","🌙 Your Calmness","💎 Your Uniqueness","☀️ Your Positivity","🌺 Your Warm Heart","🩷 Your Beauty","🌟 Your Strength","🎶 Your Voice","💖 Everything About You","🎂 Birthday Girl"];
-const c=document.getElementById('cards');
-data.forEach((x,i)=>{
-let d=document.createElement('div');
-d.className='card';
-d.textContent=x;
-d.onclick=()=>{document.getElementById('title').textContent=x;document.getElementById('msg').textContent='Placeholder message '+(i+1)+'. Replace with your own memory.';}
-c.appendChild(d);
+
+/* CARD DATA */
+
+const data = [
+
+["❤️","Your Smile","Your smile has a beautiful way of making ordinary moments feel brighter. Never lose that happiness."],
+
+["🌸","Your Kindness","Your kindness is one of those qualities that makes you truly special."],
+
+["🦋","Your Presence","Sometimes just having someone around makes everything better. Your presence does that."],
+
+["✨","Your Innocence","There is something genuinely lovely about your simple and natural way of being."],
+
+["🌹","Your Eyes","Your eyes have a way of expressing emotions that words sometimes cannot."],
+
+["💌","Your Caring Nature","The way you care about people shows how thoughtful and wonderful you are."],
+
+["😊","Your Laugh","Your laughter makes little moments unforgettable."],
+
+["⭐","Your Personality","You have your own unique personality, and that is something worth celebrating."],
+
+["🌷","Your Sweetness","Your little gestures and sweet nature make you unforgettable."],
+
+["💕","Your Support","Having someone supportive makes difficult days feel a little easier."],
+
+["🎀","Your Style","You have a lovely way of expressing yourself."],
+
+["🌙","Your Calmness","Your calm nature brings a peaceful feeling to the moments around you."],
+
+["💎","Your Uniqueness","There is nobody exactly like you. That is your own special magic."],
+
+["☀️","Your Positivity","Your positive energy can make even simple moments feel brighter."],
+
+["🌺","Your Warm Heart","You have a warmth that makes people feel appreciated."],
+
+["🩷","Your Beauty","Your beauty is not just about appearance; it is also reflected in your kindness and character."],
+
+["🌟","Your Strength","You have your own strength, even on days when you may not notice it."],
+
+["🎶","Your Voice","The little things about you, even the sound of your voice, make you memorable."],
+
+["💖","Everything About You","All the little things together make you someone truly worth appreciating."],
+
+["🎂","The Birthday Girl","Today is a celebration of you, your journey and all the wonderful moments still ahead."]
+];
+
+/* GENERATE CARDS */
+
+const cards = document.getElementById("cards");
+
+let discovered = new Set();
+
+data.forEach((item,index) => {
+
+    const card = document.createElement("div");
+
+    card.className = "card";
+    card.style.animationDelay = (index * .05) + "s";
+
+    card.innerHTML = `
+        <div class="emoji">${item[0]}</div>
+        <div class="name">${item[1]}</div>
+        <div class="status">TAP TO DISCOVER ✦</div>
+    `;
+
+    card.onclick = () => {
+
+        document.querySelectorAll(".card").forEach(c => {
+            c.classList.remove("active");
+        });
+
+        card.classList.add("active");
+
+        document.getElementById("messageTitle").textContent = item[1];
+
+        document.getElementById("message").textContent = item[2];
+
+        discovered.add(index);
+
+        card.querySelector(".status").textContent = "✓ DISCOVERED";
+
+        document.getElementById("count").textContent =
+            discovered.size + " / 20";
+
+        document.getElementById("progress").style.width =
+            (discovered.size / 20 * 100) + "%";
+
+    };
+
+    cards.appendChild(card);
+
 });
+
+/* SECRET LETTER */
+
+function openLetter() {
+
+    const letter = document.getElementById("letter");
+
+    if(letter.style.display === "block") {
+        letter.style.display = "none";
+    } else {
+        letter.style.display = "block";
+
+        setTimeout(() => {
+            letter.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+        },100);
+    }
+
+}
+
 </script>
+
 </body>
 </html>
