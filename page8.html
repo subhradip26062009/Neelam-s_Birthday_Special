@@ -1,188 +1,461 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cake Ceremony 🎂</title>
+
+<title>Cake Ceremony | Neelam</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
 
 <style>
-
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Poppins,sans-serif;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --pink:#f18bb8;
+    --gold:#f5c77e;
+    --white:#fff7fc;
 }
 
 body{
-overflow:hidden;
-height:100vh;
-background:linear-gradient(to top,#190033,#3b0764,#6d28d9);
-display:flex;
-justify-content:center;
-align-items:center;
-flex-direction:column;
-color:white;
+    min-height:100vh;
+    overflow-x:hidden;
+    font-family:'DM Sans',sans-serif;
+    color:white;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:35px 15px;
+
+    background:
+    radial-gradient(circle at 20% 20%,#57277c,transparent 40%),
+    radial-gradient(circle at 80% 80%,#35134f,transparent 40%),
+    linear-gradient(135deg,#10051d,#230c38,#10051d);
+}
+
+/* BACKGROUND */
+
+.orb{
+    position:fixed;
+    width:300px;
+    height:300px;
+    border-radius:50%;
+    filter:blur(100px);
+    opacity:.3;
+    pointer-events:none;
+}
+
+.orb.one{
+    background:#e65caa;
+    top:-120px;
+    left:-100px;
+}
+
+.orb.two{
+    background:#9b6bff;
+    bottom:-120px;
+    right:-100px;
+}
+
+.stars{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background-image:radial-gradient(white 1px,transparent 1px);
+    background-size:65px 65px;
+    opacity:.17;
+}
+
+/* MAIN CARD */
+
+.container{
+    width:100%;
+    max-width:650px;
+    position:relative;
+    z-index:2;
+
+    padding:38px 25px;
+
+    text-align:center;
+
+    border:1px solid rgba(255,255,255,.13);
+    border-radius:30px;
+
+    background:rgba(255,255,255,.065);
+    backdrop-filter:blur(20px);
+
+    box-shadow:0 25px 80px rgba(0,0,0,.3);
+}
+
+.label{
+    display:inline-block;
+    padding:8px 18px;
+    border-radius:30px;
+
+    background:rgba(241,139,184,.12);
+    border:1px solid rgba(241,139,184,.3);
+
+    color:#ffc1dd;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:3px;
 }
 
 h1{
-margin-bottom:20px;
-text-align:center;
-font-size:3rem;
-text-shadow:0 0 20px pink;
+    margin-top:22px;
+    font-family:'Playfair Display',serif;
+    font-size:clamp(30px,6vw,45px);
+    color:#ffe5f2;
 }
 
 .subtitle{
-margin-bottom:30px;
-font-size:1.2rem;
-text-align:center;
+    margin-top:12px;
+    color:#c8b3d0;
+    font-size:14px;
+    line-height:1.7;
 }
 
+/* CAKE */
+
 .cake-container{
-position:relative;
-width:350px;
-height:450px;
+    position:relative;
+    width:330px;
+    height:300px;
+    max-width:100%;
+    margin:35px auto 10px;
+}
+
+.cake{
+    position:absolute;
+    bottom:20px;
+    left:50%;
+    transform:translateX(-50%);
+    width:290px;
+    height:190px;
+    transition:1s;
 }
 
 .layer{
-position:absolute;
-left:50%;
-transform:translateX(-50%);
-border-radius:20px;
-box-shadow:0 0 20px rgba(255,255,255,.3);
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+    border-radius:15px 15px 22px 22px;
+    box-shadow:inset 0 -9px 15px rgba(0,0,0,.12),
+               0 8px 20px rgba(0,0,0,.2);
 }
 
-.layer1{
-bottom:0;
-width:320px;
-height:120px;
-background:#ff69b4;
+.layer.bottom{
+    bottom:0;
+    width:290px;
+    height:85px;
+    background:linear-gradient(120deg,#c94c83,#f28ab5,#bd467c);
 }
 
-.layer2{
-bottom:110px;
-width:260px;
-height:100px;
-background:#ff85c1;
+.layer.middle{
+    bottom:78px;
+    width:235px;
+    height:75px;
+    background:linear-gradient(120deg,#f2a6c6,#ffe0ec,#dc79a6);
 }
 
-.layer3{
-bottom:200px;
-width:200px;
-height:90px;
-background:#ffb3d9;
+.layer.top{
+    bottom:145px;
+    width:180px;
+    height:65px;
+    background:linear-gradient(120deg,#ffe4ed,#fff8fa,#edb1cc);
 }
+
+/* ICING */
+
+.layer::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:18px;
+    background:#fff0f6;
+    border-radius:50%;
+}
+
+.layer.bottom::after{
+    content:"";
+    position:absolute;
+    top:12px;
+    left:20%;
+    width:12px;
+    height:25px;
+    background:#fff0f6;
+    border-radius:0 0 10px 10px;
+}
+
+/* CANDLES */
 
 .candle{
-position:absolute;
-top:70px;
-width:15px;
-height:70px;
-background:white;
-border-radius:10px;
+    position:absolute;
+    bottom:205px;
+    width:12px;
+    height:48px;
+    border-radius:4px;
+    background:repeating-linear-gradient(
+        45deg,#fff 0px,#fff 5px,#e66da5 5px,#e66da5 10px
+    );
+    z-index:5;
 }
 
+.c1{left:95px;}
+.c2{left:145px;}
+.c3{left:195px;}
+
 .flame{
-position:absolute;
-top:-25px;
-left:50%;
-transform:translateX(-50%);
-width:20px;
-height:25px;
-background:gold;
-border-radius:50%;
-box-shadow:0 0 20px orange;
-animation:flicker .3s infinite alternate;
+    position:absolute;
+    width:16px;
+    height:23px;
+    background:linear-gradient(#fff8a8,#ffb52e,#ff6b35);
+    border-radius:50% 50% 50% 0;
+    transform:rotate(-45deg);
+    top:-26px;
+    left:-2px;
+    box-shadow:0 0 15px #ffbd49,0 0 35px #ff8b35;
+    animation:flicker .3s infinite alternate;
 }
 
 @keyframes flicker{
-from{transform:translateX(-50%) scale(1);}
-to{transform:translateX(-50%) scale(1.2);}
+    to{transform:rotate(-45deg) scale(1.2);}
 }
 
+/* CANDLE OUT */
+
+.flame.off{
+    display:none;
+}
+
+/* CAKE CUT */
+
+.cake.cut{
+    transform:translateX(-50%) rotate(-5deg);
+    filter:brightness(1.15);
+}
+
+/* BUTTONS */
+
 .controls{
-margin-top:30px;
-display:flex;
-gap:15px;
-flex-wrap:wrap;
-justify-content:center;
+    display:flex;
+    justify-content:center;
+    gap:13px;
+    flex-wrap:wrap;
+    margin-top:15px;
 }
 
 button{
-padding:12px 25px;
-border:none;
-border-radius:40px;
-font-size:1rem;
-cursor:pointer;
-background:hotpink;
-color:white;
-box-shadow:0 0 15px hotpink;
+    border:none;
+    cursor:pointer;
+    font-family:'DM Sans',sans-serif;
+    font-weight:700;
+    transition:.3s;
 }
+
+.action{
+    padding:14px 23px;
+    border-radius:13px;
+    color:white;
+    font-size:13px;
+    background:linear-gradient(120deg,#df609c,#a84491);
+    box-shadow:0 8px 25px rgba(220,85,157,.2);
+}
+
+.action:hover{
+    transform:translateY(-4px);
+    box-shadow:0 12px 30px rgba(220,85,157,.35);
+}
+
+.action:disabled{
+    opacity:.5;
+    cursor:default;
+    transform:none;
+}
+
+/* MESSAGE */
 
 #message{
-margin-top:20px;
-font-size:1.3rem;
-text-align:center;
-display:none;
+    display:none;
+    margin:25px auto 0;
+    max-width:450px;
+    padding:20px;
+    border-radius:18px;
+
+    background:rgba(255,255,255,.07);
+    border:1px solid rgba(255,255,255,.12);
+
+    color:#ffe0ee;
+    line-height:1.8;
+    font-size:14px;
+
+    animation:appear .8s ease;
 }
+
+@keyframes appear{
+    from{opacity:0;transform:translateY(15px);}
+    to{opacity:1;transform:translateY(0);}
+}
+
+/* NEXT */
 
 #nextBtn{
-display:none;
+    display:none;
+    margin:22px auto 0;
+    padding:15px 28px;
+    border-radius:14px;
+
+    background:linear-gradient(120deg,#f5c77e,#d99548);
+    color:#32172a;
+    font-size:13px;
+    font-weight:700;
+
+    box-shadow:0 8px 25px rgba(245,199,126,.2);
 }
+
+#nextBtn:hover{
+    transform:translateY(-3px);
+}
+
+/* FOOTER */
+
+.footer{
+    margin-top:28px;
+    color:#a78cae;
+    font-size:10px;
+    letter-spacing:3px;
+}
+
+/* CONFETTI */
 
 .confetti{
-position:absolute;
-font-size:25px;
-pointer-events:none;
+    position:fixed;
+    top:-30px;
+    z-index:20;
+    pointer-events:none;
+    animation:fall linear forwards;
 }
 
+@keyframes fall{
+    to{
+        transform:translateY(110vh) rotate(720deg);
+        opacity:0;
+    }
+}
+
+/* MOBILE */
+
+@media(max-width:480px){
+    .container{
+        padding:30px 16px;
+    }
+
+    .cake-container{
+        transform:scale(.85);
+        margin:15px auto;
+    }
+
+    .controls{
+        gap:10px;
+    }
+
+    .action{
+        padding:13px 16px;
+    }
+}
+
+@media(prefers-reduced-motion:reduce){
+    *,*::before,*::after{
+        animation-duration:.01ms!important;
+        animation-iteration-count:1!important;
+        transition-duration:.01ms!important;
+    }
+}
 </style>
 </head>
+
 <body>
 
-<h1>🎂 Happy Birthday Neelam 🎂</h1>
+<div class="orb one"></div>
+<div class="orb two"></div>
+<div class="stars"></div>
 
-<p class="subtitle">
-Make a wish and celebrate this special day ❤️
-</p>
+<main class="container">
 
-<div class="cake-container">
+    <div class="label">✦ THE GRAND CELEBRATION ✦</div>
 
-<div class="layer layer1"></div>
-<div class="layer layer2"></div>
-<div class="layer layer3"></div>
+    <h1>Happy Birthday Neelam</h1>
 
-<div class="candle" style="left:105px;">
-<div class="flame"></div>
-</div>
+    <p class="subtitle">
+        A little cake, a beautiful wish and a day<br>
+        that deserves to be remembered forever.
+    </p>
 
-<div class="candle" style="left:165px;">
-<div class="flame"></div>
-</div>
+    <!-- CAKE -->
 
-<div class="candle" style="left:225px;">
-<div class="flame"></div>
-</div>
+    <div class="cake-container">
 
-</div>
+        <div class="cake" id="cake">
 
-<div class="controls">
+            <div class="layer bottom"></div>
+            <div class="layer middle"></div>
+            <div class="layer top"></div>
 
-<button onclick="blowCandles()">
-🕯 Blow Candles
-</button>
+            <div class="candle c1">
+                <div class="flame"></div>
+            </div>
 
-<button onclick="cutCake()">
-🍰 Cut Cake
-</button>
+            <div class="candle c2">
+                <div class="flame"></div>
+            </div>
 
-<button id="nextBtn">
-🌙 Enter Dream Night Sky
-</button>
+            <div class="candle c3">
+                <div class="flame"></div>
+            </div>
 
-</div>
+        </div>
 
-<div id="message"></div>
+    </div>
+
+    <p class="subtitle">
+        Make a wish before the candles disappear ✨
+    </p>
+
+    <!-- CONTROLS -->
+
+    <div class="controls">
+
+        <button class="action" id="blowBtn" onclick="blowCandles()">
+            🕯 Blow Candles
+        </button>
+
+        <button class="action" id="cutBtn" onclick="cutCake()">
+            🍰 Cut The Cake
+        </button>
+
+    </div>
+
+    <div id="message"></div>
+
+    <button id="nextBtn" onclick="goNext()">
+        ✨ Enter Dream Night Sky →
+    </button>
+
+    <div class="footer">
+        MADE WITH LOVE • JUST FOR YOU
+    </div>
+
+</main>
 
 <script>
 
@@ -191,94 +464,101 @@ let cut=false;
 
 function blowCandles(){
 
-let flames=document.querySelectorAll('.flame');
+    if(blown) return;
 
-flames.forEach(flame=>{
-flame.style.display='none';
-});
+    blown=true;
 
-blown=true;
+    document.querySelectorAll('.flame').forEach(flame=>{
+        flame.classList.add('off');
+    });
 
-document.getElementById("message").style.display="block";
-document.getElementById("message").innerHTML=
-"✨ Candles blown successfully! Your wish is now flying towards the stars ✨";
+    document.getElementById('blowBtn').disabled=true;
 
-checkComplete();
+    showMessage(
+        "✨ Your candles have gone out! May every little wish in your heart find its way to reality. ✨"
+    );
+
+    checkComplete();
 }
 
 function cutCake(){
 
-cut=true;
+    if(cut) return;
 
-document.getElementById("message").style.display="block";
-document.getElementById("message").innerHTML=
-"🎉 Cake Cut Successfully! Let the celebration begin! 🎉";
+    cut=true;
 
-launchConfetti();
+    document.getElementById('cake').classList.add('cut');
+    document.getElementById('cutBtn').disabled=true;
 
-checkComplete();
+    launchConfetti();
+
+    showMessage(
+        "🎉 The cake has been cut! Let the sweetest celebration begin. ❤️"
+    );
+
+    checkComplete();
+}
+
+function showMessage(text){
+
+    const msg=document.getElementById('message');
+
+    msg.style.display='block';
+    msg.innerHTML=text;
+
 }
 
 function checkComplete(){
 
-if(blown && cut){
+    if(blown && cut){
 
-document.getElementById("nextBtn").style.display="inline-block";
+        showMessage(
+        "❤️ Happy Birthday, Neelam! ❤️<br><br>"+
+        "May your life always be filled with happiness, "+
+        "success, laughter and countless beautiful memories. "+
+        "You deserve all the wonderful things life has to offer. ✨"
+        );
 
-document.getElementById("message").innerHTML=
-"❤️ Happy Birthday Neelam ❤️<br><br>May your life always be filled with happiness, success and beautiful memories.";
+        document.getElementById('nextBtn').style.display='inline-block';
 
-}
+        launchConfetti();
+    }
+
 }
 
 function launchConfetti(){
 
-for(let i=0;i<150;i++){
+    const items=['✨','💖','🎉','🌸','🎊','⭐','💕'];
 
-let conf=document.createElement("div");
+    for(let i=0;i<90;i++){
 
-conf.classList.add("confetti");
+        const conf=document.createElement('div');
 
-const items=["🎉","✨","❤️","🌹","🎊"];
+        conf.className='confetti';
 
-conf.innerHTML=
-items[Math.floor(Math.random()*items.length)];
+        conf.innerHTML=items[Math.floor(Math.random()*items.length)];
 
-conf.style.left=Math.random()*100+"vw";
-conf.style.top="-20px";
+        conf.style.left=Math.random()*100+'vw';
 
-document.body.appendChild(conf);
+        conf.style.fontSize=(12+Math.random()*20)+'px';
 
-let pos=-20;
-let speed=3+Math.random()*6;
+        conf.style.animationDuration=(3+Math.random()*4)+'s';
 
-let fall=setInterval(()=>{
+        conf.style.animationDelay=Math.random()*1.5+'s';
 
-pos+=speed;
+        document.body.appendChild(conf);
 
-conf.style.top=pos+"px";
+        setTimeout(()=>conf.remove(),8500);
 
-if(pos>window.innerHeight){
-
-clearInterval(fall);
-conf.remove();
+    }
 
 }
 
-},20);
+function goNext(){
+
+    window.location.href='nightsky.html';
 
 }
-}
-
-document.getElementById("nextBtn").onclick=function(){
-
-alert("🌙 Opening Dream Night Sky Section");
-
-/*
-window.location.href="nightsky.html";
-*/
-
-};
 
 </script>
 
